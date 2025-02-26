@@ -20,7 +20,7 @@ const Product = async ({ params }: { params: IParams }) => {
         {product && user && (
           <div className="flex flex-col w-[400px]">
             <Heading title="Write a review and rate" />
-            <AddRating product={product} user={user} />
+            <AddRating product={product} userID={user.id} />
         
           </div>
          )} 

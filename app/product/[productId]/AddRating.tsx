@@ -11,10 +11,10 @@ import toast from "react-hot-toast";
 
 interface AddRatingProps {
   product: Product;
-  user: User;
+  userID: string;
 }
 
-const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
+const AddRating: React.FC<AddRatingProps> = ({ product, userID }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -38,7 +38,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
     const updateData = {
-        ...data, product, userId: user?.id
+        ...data, product, userId: userID
     }
      axios.post('/api/rating', updateData)
     .then(()=>{

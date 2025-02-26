@@ -65,7 +65,7 @@ const ClientCheckOut = () => {
   const options = clientSecret
   ? {
       clientSecret,
-      appearance: { theme: "stripe", labels: "floating" },
+      appearance: { theme: "stripe" as "flat" | "stripe" | "night" | undefined, labels: "floating" as "floating" },
     }
   : undefined;
 
