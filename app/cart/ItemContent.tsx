@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { truncate } from "../../utils/truncate";
 import SetQuantity from "../components/products/SetQuantity";
-import { CartContext } from "@/context/CartContext";
+import useCart from "@/hooks/useCart";
 
 interface ItemContentProps {
   item: CartProductType;
@@ -16,7 +16,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
     handleRemoveProductFromCart,
     handleCartQtyDecrease,
     handleCartQtyIncrease,
-  } = useContext(CartContext);
+  } = useCart();
   return (
     <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-t-[1.5px] border-slate-200 items-center py-4">
       <div className="col-span-2 justify-self-start flex gap-2">

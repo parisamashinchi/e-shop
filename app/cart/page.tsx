@@ -1,11 +1,13 @@
 import { Container } from "@mui/material";
 import CartClient from "./CartClient";
+import { getUser } from "@/actions/getUser";
 
-const Cart = () => {
+const Cart = async () => {
+  const user = await getUser();
   return (
     <div>
       <Container>
-        <CartClient />
+        <CartClient user={user} />
       </Container>
     </div>
   );

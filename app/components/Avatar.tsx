@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FaCircleUser } from "react-icons/fa6";
 
 interface AvatarProps {
-  src: string | null | undefined;
+  src?: string | null | undefined;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src }) => {
@@ -11,7 +11,7 @@ const Avatar: React.FC<AvatarProps> = ({ src }) => {
       <Image
         src={src}
         alt="Avatar"
-        width="30"
+        width="40"
         height="30"
         className="rounded-full border-slate-400 border-2"
       />

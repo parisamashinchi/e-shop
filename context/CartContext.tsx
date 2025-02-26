@@ -18,6 +18,8 @@ interface contextProp {
   handleCartQtyIncrease: (product: CartProductType) => void;
   handleCartQtyDecrease: (product: CartProductType) => void;
   handleClearCart: () => void;
+  handleSetPaymentIntent: (paymentIntentId: string | null) => void;
+  paymentIntentId: string | null;
 }
 export const CartContext = createContext<contextProp | null>(null);
 
@@ -32,12 +34,16 @@ export const CartContextProvider: React.FC<cartContextProps> = ({
   );
   const [cartTotalQty, setCartTotalQty] = useState(0);
   const [cartTotalAmount, setCartTotalAmount] = useState(0);
+  const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("eShopCart");
-    const ParsedCartItems: CartProductType[] | null =
-      cartItems && JSON.parse(cartItems);
+    const ParsedCartItems: CartProductType[] | null = cartItems && JSON.parse(cartItems);
+    const eShopPaymentIntent = localStorage.getItem("eShopPaymentIntent");
+    const paymentIntentId = eShopPaymentIntent && JSON.parse(eShopPaymentIntent);
+  
     setCartProducts(ParsedCartItems);
+    setPaymentIntentId(paymentIntentId);
   }, []);
 
   useEffect(() => {
@@ -127,6 +133,11 @@ export const CartContextProvider: React.FC<cartContextProps> = ({
     localStorage.setItem("eShopCart", JSON.stringify(null));
   }, [cartProducts]);
 
+  const handleSetPaymentIntent = useCallback((val: string| null)=>{
+    setPaymentIntentId(val);
+    localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
+  },[])
+
   const value = {
     cartTotalQty,
     cartTotalAmount,
@@ -136,6 +147,8 @@ export const CartContextProvider: React.FC<cartContextProps> = ({
     handleCartQtyIncrease,
     handleCartQtyDecrease,
     handleClearCart,
+    handleSetPaymentIntent,
+    paymentIntentId
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

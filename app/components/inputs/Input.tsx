@@ -24,6 +24,8 @@ const Input: React.FC<InputProps> = ({
         id={id}
         type={type}
         required={required}
+        disabled={disabled}
+        {...register(id)}
         className={`
         peer
         w-full
@@ -47,17 +49,17 @@ const Input: React.FC<InputProps> = ({
         cursor-text
         text-md
         absolute
-        top-5
         left-4
         z-10
-        transform
-        -translate-y-3
+        top-4
+        peer-focus:top-2 
+        peer-placeholder-shown:top-5
+        peer-placeholder-shown:text-base
         origin-[0]
         duration-150
-        peer-placeholder-shown: scale-100
-        peer-placeholder-shown: translate-y-0 
         peer-focus: scale-75
-        peer-focus: -translate-y-4
+        peer-focus: -translate-y-2
+        focus:-translate-y-4 
          ${errors[id] ? "text-rose-400" : "text-slate-400"}
         `}
       >

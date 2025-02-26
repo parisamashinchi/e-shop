@@ -1,5 +1,5 @@
 import moment from "moment";
-import Heading from "@/app/components/products/Heading";
+import Heading from "@/app/components/Heading";
 import { Rating } from "@mui/material";
 import Avatar from "@/app/components/Avatar";
 
@@ -10,7 +10,7 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
   return (
     <div>
       <Heading title="Product Preview" />
-      <div className="mt-2">
+      <div className="my-2">
         {product.reviews.map((review: any) => {
           return (
             <div key={review.id} className="w-[500px]">
@@ -23,7 +23,6 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
                 <Rating value={review.rating} readOnly />
                 <p className="ml-2">{review.comment}</p>
               </div>
-              <hr className="mt-2 mb-2" />
             </div>
           );
         })}

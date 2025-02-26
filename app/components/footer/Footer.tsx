@@ -10,9 +10,9 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-rose-900 text-gray-50 ">
+    <div className="bg-[#232F3E] text-gray-50 ">
       <Container>
-        <div className="flex justify-between gap-15  ">
+        <div className="flex justify-between gap-15 py-5 ">
           <FooterList>
             <h1 className="font-bold"> Categories</h1>
             <ul>

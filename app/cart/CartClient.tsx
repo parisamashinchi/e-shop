@@ -1,19 +1,24 @@
 "use client";
 import Link from "next/link";
-import { useContext } from "react";
 import { MdArrowBack } from "react-icons/md";
-import { CartContext } from "@/context/CartContext";
-import Heading from "../components/products/Heading";
+import useCart from "@/hooks/useCart";
+import Heading from "../components/Heading";
 import { CartProductType } from "../product/[productId]/ProductDetail";
 import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "../../utils/formatPrice";
+import { useRouter } from "next/navigation";
+import { UserChangedProps } from "@/types";
 
-const CartClient = () => {
-  const { cartProducts, handleClearCart, cartTotalAmount } =
-    useContext(CartContext);
+interface UserProps {
+  user: UserChangedProps | null;
+}
+const CartClient: React.FC<UserProps> = ({ user }) => {
 
-  if (!cartProducts && cartProducts?.length === 0) {
+  const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
+  const router = useRouter();
+
+  if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="flex flex-col gap-2">
         <div>
@@ -26,10 +31,11 @@ const CartClient = () => {
       </div>
     );
   }
+
   return (
     <>
       <Heading title="Shopping cart" />
-      <div className="grid grid-cols-5 gap-2 mt-5">
+      <div className="grid grid-cols-5 gap-2 mt-5 font-semibold">
         <div className="col-span-2 justify-start">PRODUCT</div>
         <div className="justify-center">PRICE</div>
         <div className="justify-center">QUANTITY</div>
@@ -51,7 +57,13 @@ const CartClient = () => {
           <p className="text-slate-500 mb-2">
             Tax and Shipping calculate at checkout
           </p>
-          <Button label="Checkout" onClick={() => {}} />
+          <Button
+            label={user ? "Checkout" : "Sign in to checkout"}
+            outline={user ? false : true }
+            onClick={() =>
+              user ? router.push("/checkout") : router.push("/login")
+            }
+          />
           <Link href="/" className="flex items-center gap-1">
             <MdArrowBack />
             <span className="text-slate-400 mt-2">continue shopping </span>

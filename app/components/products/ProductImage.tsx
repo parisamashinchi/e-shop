@@ -9,10 +9,10 @@ interface ProductImageProps {
   product: any;
   handleColorSelect: (value: SelectedImgType) => void;
 }
-const ProductImage = ({ cartProduct, product, handleColorSelect }) => {
+const ProductImage:React.FC<ProductImageProps> = ({ cartProduct, product, handleColorSelect }) => {
   return (
-    <div className="grid grid-cols-6">
-      <div className="flex flex-col items-center justify-center  gap-4 h-full max-h-[500] min-h-[300]">
+    <div className="grid grid-cols-6 shadow-md border-slate-500 p-5">
+      <div className="flex flex-col items-center justify-center  gap-4 h-full max-h-[500] min-h-[300] ">
         {product.images.map((image: SelectedImgType) => {
           return (
             <div
@@ -21,7 +21,7 @@ const ProductImage = ({ cartProduct, product, handleColorSelect }) => {
               className={`w-[70%] aspect-square relative cursor-pointer  
                 ${
                   cartProduct.selectedImg.color === image.color
-                    ? "border-2 *:border-slate-400"
+                    ? "shadow-md border-slate-500"
                     : "border-none"
                 }
                 `}
