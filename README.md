@@ -28,7 +28,7 @@ A modern fullstack e-commerce web application built with cutting-edge technologi
 
 ---
 
-🔗 **[Live Demo](#)** (Add your live link here)  
+🔗 **[Live Demo](https://e-shop-iby8.vercel.app/register)** (Add your live link here)  
 📌 **Setup Instructions:** Clone, install dependencies, and run the project.  
 
 ```bash
