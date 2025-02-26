@@ -36,3 +36,7 @@ git clone https://github.com/parisamashinchi/e-shop.git
 cd e-shop
 npm install
 npm run dev
+
+admin email: admin@gmail.com
+admin pass : admin
+
